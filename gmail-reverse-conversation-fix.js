@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         gmail-reverse-conversation-fix
-// @namespace    https://github.com/xrkmed
+// @namespace    https://github.com/xrkmed/gmail-reverse-convesation-fix
 // @version      0.1
 // @description  Esta extensão em javascript corrige o problema de scroll ocasionado pela defasagem da compatibilidade da extensão "gmail-reverse-conversation" com as atualizações do gmail.
 // @author       xrkmed
@@ -15,7 +15,7 @@
     'use strict';
 
 	var FT_TEST = true;
-	var DEBUG = true;
+	var DEBUG = false;
 	var m_scroll = null;
 
     let run = function(){
@@ -60,7 +60,8 @@
 		//alpha test
 	}
 
-    //document.onclick = eventRef;
+    if(DEBUG) document.onclick = eventRef;
+
     document.arrive('.HM', function(){ run(); } );
 
 	function eventRef(evt) {
@@ -71,7 +72,7 @@
 			var elem = evt.target ? han = evt.target : evt.srcElement && (han = evt.srcElement);
 
 			if (evt.type=="click") {
-				console.log("[Event Register] Clicked on " + elem.textContent + ".");
+				console.log("[Debug] Clicou em: " + elem.textContent + ".");
 			}
 		}
 	}
